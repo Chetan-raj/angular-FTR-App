@@ -1,0 +1,289 @@
+
+
+<nav class="navbar navbar-expand-md">
+    <!-- Brand -->
+    
+    <a class="navbar-brand" href="#">FTR</a>
+    
+    <!-- button on collapse -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav navStyle">
+        <!-- Add Router links here --> 
+        <li class="nav-item dropdown"> 
+          <button type="submit" (click)="insertTerminalIcon()">Insert Terminal</button>
+          <button type="submit" (click)="deleteIcon()">Delete</button>
+          <button type="submit" (click)="updateIcon()">Update</button>
+          <button type="submit" (click)="fetchTerminalByIdIcon()">Fetch By Terminal ID</button>
+          <button type="submit" (click)="fetchTerminalByTypeIcon()">Fetch By Item Type</button>
+          <button type="submit" (click)="fetchFTRTerminalsNow()">Fetch FTR Terminals</button>
+      </li>
+      
+      </ul>
+    </div>
+    <div class="topnav-right">
+        <a [routerLink]="['/home']" [routerLinkActive]="['activeLink']">Logout</a>
+      </div>
+  </nav>
+  
+  
+  <!--######################################################################################-->
+  <!--<button type="submit" (click)="insertTerminalIcon()">Insert Terminal</button>
+  <button type="submit" (click)="deleteIcon()">Delete</button>
+  <button type="submit" (click)="updateIcon()">Update</button>
+  <button type="submit" (click)="fetchTerminalByIdIcon()">Fetch By Terminal ID</button>
+  <button type="submit" (click)="fetchTerminalByTypeIcon()">Fetch By Item Type</button>
+  <button type="submit" (click)="fetchFTRTerminalsNow()">Fetch FTR Terminals</button>-->
+  <!--<button type="submit" (click)="fetchFTRTerminalsIcon()">Fetch FTR Terminals</button>-->
+  <!--############################################################-->
+  <div *ngIf="deleteTerminal">
+  <div>
+      <label>Terminal ID</label>
+      <input class="form-control" required type="text" [(ngModel)]="terminal.terminalId" name="terminalId" id="email">
+  
+  </div>
+  <div>
+      <input type="submit" (click) = "deleteTerminalNow()">
+  </div>
+  <p>{{message}}</p>
+  </div>
+  
+  <!--############################################################-->
+  <div *ngIf="updateTerminal">
+  
+      <div>
+          <label>Terminal ID</label>
+          <input class="form-control" required type="text" [(ngModel)]="terminal.terminalId" name="terminalId" id="terminalId">
+      
+      </div>
+      <div>
+          <label>New Capacity</label>
+          <input class="form-control" required type="text" [(ngModel)]="terminal.capacity" name="availableCapacity" id="capacity">
+      
+      </div>
+      <div>
+          <input type="submit" (click) = "updateTerminalNow()">
+      </div>
+      <p>{{updateMessage}}</p>
+  </div>
+  <!--############################################################-->
+  <div *ngIf="fetchTerminalById">
+      <div>
+          <label>Terminal ID</label>
+          <input class="form-control" required type="text" [(ngModel)]="terminal.terminalId" name="terminalId" id="terminalId">
+      
+      </div>
+      <div>
+          <input type="submit" (click) = "fetchTerminalByIdNow()">
+      </div>
+  <div *ngIf="ShowFetchByIdDetails">
+      <h1> Terminal Details </h1>
+  <table class="table table-bordered table-striped">
+      <tr>
+          <th>Terminal ID</th>
+          <th>Terminal Name</th>
+          <th>Country</th>
+          <th>Item Type</th>
+          <th>Terminal Description</th>
+          <th>Capacity</th>
+          <th>Status</th>
+          <th>Harbour Location</th>
+          <th>Available Capacity</th>
+      </tr>
+      <tr>
+          <td>{{showTerminal.terminalId}}</td>
+          <td>{{showTerminal.terminalName}}</td>
+          <td>{{showTerminal.country}}</td>
+          <td>{{showTerminal.itemType}}</td>
+          <td>{{showTerminal.terminalDescription}}</td>
+          <td>{{showTerminal.capacity}}</td>
+          <td>{{showTerminal.status}}</td>
+          <td>{{showTerminal.harbourLocation}}</td>
+          <td>{{showTerminal.availableCapacity}}</td>
+  
+      </tr>
+  </table>
+  </div>
+  
+  </div>
+  <!--############################################################-->
+  <div *ngIf="fetchTerminalByType">
+      <div>
+          <label>Item Type</label>
+          <input class="form-control" required type="text" [(ngModel)]="terminal.itemType" name="itemType" id="itemType">
+      
+      </div>
+      <div>
+          <input type="submit" (click) = "fetchTerminalByTypeNow()">
+      </div>
+  <div *ngIf="showFetchByTypeDetails">
+      <h1> Terminal Details </h1>
+  <table border="solid">
+      <tr>
+          <th>Terminal ID</th>
+          <th>Terminal Name</th>
+          <th>Country</th>
+          <th>Item Type</th>
+          <th>Terminal Description</th>
+          <th>Capacity</th>
+          <th>Status</th>
+          <th>Harbour Location</th>
+          <th>Available Capacity</th>
+      </tr>
+      <tr *ngFor="let t of showTerminal">
+          <td>{{t.terminalId}}</td>
+          <td>{{t.terminalName}}</td>
+          <td>{{t.country}}</td>
+          <td>{{t.itemType}}</td>
+          <td>{{t.terminalDescription}}</td>
+          <td>{{t.capacity}}</td>
+          <td>{{t.status}}</td>
+          <td>{{t.harbourLocation}}</td>
+          <td>{{t.availableCapacity}}</td>
+  
+      </tr>
+  </table>
+    </div>  
+  </div>
+  
+  <!--#########################################################################################-->
+  
+  <div *ngIf="fetchFTRTerminals">
+      
+      <!--<div>
+          <input type="submit" (click) = "fetchFTRTerminalsNow()">
+      </div>-->
+  
+      <h1> Terminals Details </h1>
+  <table border="solid">
+      <tr>
+          <th>Terminal ID</th>
+          <th>Terminal Name</th>
+          <th>Country</th>
+          <th>Item Type</th>
+          <th>Terminal Description</th>
+          <th>Capacity</th>
+          <th>Status</th>
+          <th>Harbour Location</th>
+          <th>Available Capacity</th>
+      </tr>
+      <tr *ngFor="let ty of showTerminal">
+          <td>{{ty.terminalId}}</td>
+          <td>{{ty.terminalName}}</td>
+          <td>{{ty.country}}</td>
+          <td>{{ty.itemType}}</td>
+          <td>{{ty.terminalDescription}}</td>
+          <td>{{ty.capacity}}</td>
+          <td>{{ty.status}}</td>
+          <td>{{ty.harbourLocation}}</td>
+          <td>{{ty.availableCapacity}}</td>
+  
+      </tr>
+  </table>
+      
+  </div>
+  
+  <!--######################################################################################-->
+  <div *ngIf="insertTerminal">
+  
+  <!--<div>
+      <lable for="terminalId">TerminalId</lable>
+      <label>Terminal ID :</label>
+      <input class="form-control" required type="text" [(ngModel)]="terminal.terminalId" name="terminalId" id="terminalId">
+  
+  </div>-->
+  <div *ngIf="showInsertForm">
+  <div>
+      <!--<lable for="terminalId">TerminalId</lable>-->
+      <label>Terminal Name :</label>
+      <input class="form-control" required type="text" [(ngModel)]="terminal.terminalName" name="terminalName" id="terminalName" required>
+  
+  </div>
+  <div>
+      <!--<lable for="terminalId">TerminalId</lable>-->
+      <label>Country :</label>
+      <input class="form-control" required type="text" [(ngModel)]="terminal.country" name="country" id="country">
+  
+  </div>
+  <div>
+      <!--<lable for="terminalId">TerminalId</lable>-->
+      <label>Item Type :</label>
+      <input class="form-control" required type="text" [(ngModel)]="terminal.itemType" name="itemType" id="itemType">
+  
+  </div>
+  <div>
+      <!--<lable for="terminalId">TerminalId</lable>-->
+      <label>Terminal Description :</label>
+      <input class="form-control" required type="text" [(ngModel)]="terminal.terminalDescription" name="terminalDescription" id="terminalDescription">
+  
+  </div>
+  <div>
+      <!--<lable for="terminalId">TerminalId</lable>-->
+      <label>Terminal Capacity :</label>
+      <input class="form-control" required type="text" [(ngModel)]="terminal.capacity" name="capacity" id="capacity">
+  
+  </div>
+  
+      <!--<lable for="terminalId">TerminalId</lable>-->
+      <!--<input class="form-control" required type="text" [(ngModel)]="terminal.status" name="status" id="status">-->
+      <div >
+          <label>Terminal Status :</label>
+          <label>
+            <input type="radio" name="gender" value="Male" ngModel>
+            AVAILABLE
+          </label>
+          <label>
+            <input type="radio" name="gender" value="Female" ngModel>
+            UNAVAILABLE
+          </label>
+        </div>
+  <div>
+      <!--<lable for="terminalId">TerminalId</lable>-->
+      <label>Harbour Location :</label>
+      <input class="form-control" required type="text" [(ngModel)]="terminal.harbourLocation" name="harbourLocation" id="harbourLocation">
+  
+  </div>
+  <div>
+      <!--<lable for="terminalId">TerminalId</lable>-->
+      <label>Available Capacity :</label>
+      <input class="form-control" required type="text" [(ngModel)]="terminal.availableCapacity" name="availableCapacity" id="availableCapacity">
+  
+  </div>
+  
+  <div>
+      <input type="submit" (click) = "insertTerminalNow()">
+  </div>
+  </div>
+  <div *ngIf="showInsertedDetails">
+  <h1>Inserted Terminal Details </h1>
+  <table border="solid" >
+      
+      <tr>
+          <th>Terminal ID</th>
+          <th>Terminal Name</th>
+          <th>Country</th>
+          <th>Item Type</th>
+          <th>Terminal Description</th>
+          <th>Capacity</th>
+          <th>Status</th>
+          <th>Harbour Location</th>
+          <th>Available Capacity</th>
+      </tr>
+      <tr>
+          <td>{{showTerminal.terminalId}}</td>
+          <td>{{showTerminal.terminalName}}</td>
+          <td>{{showTerminal.country}}</td>
+          <td>{{showTerminal.itemType}}</td>
+          <td>{{showTerminal.terminalDescription}}</td>
+          <td>{{showTerminal.capacity}}</td>
+          <td>{{showTerminal.status}}</td>
+          <td>{{showTerminal.harbourLocation}}</td>
+          <td>{{showTerminal.availableCapacity}}</td>
+  
+      </tr>
+  </table>
+  </div>
+  </div>
+  

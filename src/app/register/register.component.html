@@ -1,0 +1,112 @@
+<div class="topnav">
+    <a class="active" >FTR</a>
+    <div class="topnav-right">
+      <a [routerLink]="['/home']" [routerLinkActive]="['activeLink']">Back</a>
+    </div>
+</div>
+<div class="image"></div>
+<div class="content">
+        <div class="reg"> Register </div>
+        <div>
+            <form [formGroup]="coachregisterForm">
+            <div class="grpTwo">
+            <div class="form-group">
+              <label class="formLabel">First Name</label>
+              <input type="text" class="form-control" formControlName="firstName">
+              <div *ngIf="coachregisterForm.controls.firstName.errors && coachregisterForm.controls.firstName.dirty">
+              <p *ngIf="coachregisterForm.controls.firstName.errors.required" class="alert1">First Name is required!</p>
+              <p *ngIf="coachregisterForm.controls.firstName.errors.maxlength" class="alert1">First Name Max Length is 20!</p>
+            </div>
+            </div>
+            <div class="form-group">
+                <label class="formLabel">Last Name</label>
+                <input type="text" class="form-control" formControlName="lastName">
+                <div *ngIf="coachregisterForm.controls.lastName.errors && coachregisterForm.controls.lastName.dirty">
+                    <p *ngIf="coachregisterForm.controls.lastName.errors.required" class="alert1">Last Name is required!</p>
+                    <p *ngIf="coachregisterForm.controls.lastName.errors.maxlength" class="alert1">Last Name Max Length is 20!</p>
+                </div>
+              </div>
+            </div>
+            <div class="grpTwo">
+            <div class="form-group">
+            <label class="formLabel">Email Id</label>
+            <input type="text" class="form-control" formControlName="emailId">
+            <div *ngIf="coachregisterForm.controls.emailId.errors && coachregisterForm.controls.emailId.dirty">
+                <p *ngIf="coachregisterForm.controls.emailId.errors.required" class="alert1">Email is required!</p>
+                <p *ngIf="coachregisterForm.controls.emailId.errors.email" class="alert1">Email format is incorrect!</p>
+            </div>
+            </div>
+            <div class="form-group">
+                <label class="formLabel">Mobile Number</label>
+                <input type="text" class="form-control" formControlName="mobileNumber">
+                <div *ngIf="coachregisterForm.controls.mobileNumber.errors && coachregisterForm.controls.mobileNumber.dirty">
+                    <p *ngIf="coachregisterForm.controls.mobileNumber.errors.required" class="alert1">Mobile Number is required!</p>
+                    <p *ngIf="coachregisterForm.controls.mobileNumber.errors.maxlength || coachregisterForm.controls.mobileNumber.errors.minlength  " class="alert1">Mobile Number Length should be 10!</p>
+                </div>
+              </div>
+            </div>
+            <div class="grpTwo">
+            <div class="form-group">
+              <label class="formLabel">Password</label>
+              <input type="password" class="form-control" formControlName="password">
+              <div *ngIf="coachregisterForm.controls.password.errors && coachregisterForm.controls.password.dirty">
+                <p *ngIf="coachregisterForm.controls.password.errors.required" class="alert1">Password is required!</p>
+                <p *ngIf="coachregisterForm.controls.password.errors.maxlength || coachregisterForm.controls.password.errors.minlength  " class="alert1">Password Length should be between 7 and 15!</p>
+                <p *ngIf="coachregisterForm.controls.password.errors.pattern" class="alert1">Min 1 special character is required!</p>
+            </div>
+            </div>
+            <div class="form-group">
+                <label class="formLabel">Nationality</label>
+                <input type="text" class="form-control" formControlName="nationality">
+                <div *ngIf="coachregisterForm.controls.nationality.errors && coachregisterForm.controls.nationality.dirty">
+                    <p *ngIf="coachregisterForm.controls.nationality.errors.required" class="alert1">Nationality is required!</p>
+                    <p *ngIf="coachregisterForm.controls.nationality.errors.maxlength" class="alert1">Nationality Max Length is 20!</p>
+                </div>
+            </div>
+            </div>
+            <div class="grpTwo">
+            <div class="form-group">
+                <label class="formLabel">Passport Number</label>
+                <input type="text" class="form-control" formControlName="passportNumber">
+                <div *ngIf="coachregisterForm.controls.passportNumber.errors && coachregisterForm.controls.passportNumber.dirty">
+                    <p *ngIf="coachregisterForm.controls.passportNumber.errors.required" class="alert1">Passport Number is required!</p>
+                    <p *ngIf="coachregisterForm.controls.passportNumber.errors.maxlength || coachregisterForm.controls.passportNumber.errors.minlength  " class="alert1">Passport Number Length should be between 7 and 12!</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="formLabel">Permanent Address</label>
+                <input type="text" class="form-control" formControlName="permanentAddress">
+                <div *ngIf="coachregisterForm.controls.permanentAddress.errors && coachregisterForm.controls.permanentAddress.dirty">
+                    <p *ngIf="coachregisterForm.controls.permanentAddress.errors.required" class="alert1">Permanent Address is required!</p>
+                    <p *ngIf="coachregisterForm.controls.permanentAddress.errors.maxlength" class="alert1">Permanent Address Max Length is 200!</p>
+                </div>
+            </div>
+            </div>
+            <div class="grpTwo">
+            <div class="form-group">
+                <label class="formLabel">Office Address</label>
+                <input type="text" class="form-control" formControlName="officeAddress">
+                <div *ngIf="coachregisterForm.controls.officeAddress.errors && coachregisterForm.controls.officeAddress.dirty">
+                    <p *ngIf="coachregisterForm.controls.officeAddress.errors.required" class="alert1">Office Address is required!</p>
+                    <p *ngIf="coachregisterForm.controls.officeAddress.errors.maxlength" class="alert1">Office Address Max Length is 200!</p>
+                </div>
+                </div>
+            <div class="form-group">
+                <label class="formLabel">Personal Identification Number</label>
+                <input type="text" class="form-control" formControlName="personalIdentificationNumber">
+                <div *ngIf="coachregisterForm.controls.personalIdentificationNumber.errors && coachregisterForm.controls.personalIdentificationNumber.dirty">
+                    <p *ngIf="coachregisterForm.controls.personalIdentificationNumber.errors.required" class="alert1">Personal Identification Numberis required!</p>
+                    <p *ngIf="coachregisterForm.controls.personalIdentificationNumber.errors.maxlength || coachregisterForm.controls.personalIdentificationNumber.errors.minlength  " class="alert1">Personal Identification Number Length should be 12!</p>
+                </div>
+            </div>
+            </div>
+
+          </form>
+          <div>
+          <button mat-button  class="button" [disabled]="!coachregisterForm.valid" type="submit" (click)="coachregister()">Register</button>
+        </div>
+          <div class="green">
+              <h4 style="text-align: center;">{{successMessage}}</h4></div>
+        </div>
+    
+</div>

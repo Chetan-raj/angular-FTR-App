@@ -1,0 +1,40 @@
+<div class="topnav">
+    <a class="active" href="#home">FTR</a>
+    <div class="topnav-right">
+      <a [routerLink]="['/admin-login']" [routerLinkActive]="['activeLink']">Admin</a>
+    </div>
+</div>
+
+<div class="container">
+    <h1>User Login</h1>
+    <form [formGroup]="loginForm">
+      <div class="form-group">
+        <label>User ID</label>
+        <input type="text"  class="form-control" formControlName="userId" />
+        <div
+        *ngIf="(loginForm.controls['userId'].errors && (loginForm.controls['userId'].dirty || loginForm.controls['userId'].touched))"
+        class="red">
+        <div *ngIf="loginForm.controls.userId.errors.required">User ID is required</div>
+        <div *ngIf="loginForm.controls.userId.errors.pattern">User ID should be number</div>
+      </div>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="password" />
+        <div
+                *ngIf="(loginForm.controls['password'].errors && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched))"
+                class="red">
+                Password is required
+              </div>
+      </div>
+      <div class="p-field text-center">
+        <div *ngIf="errorif" >{{errorMsg}}<br></div><br>
+        <button type="button" pButton id="submit" (click)="login()" 
+          label="Login">LOGIN</button> 
+      </div>
+    </form>
+</div>
+
+<!-- <div style="text-align: center">
+    <h1>{{message}}</h1>
+</div> -->

@@ -1,0 +1,52 @@
+<div class="topnav">
+    <a class="active" href="#home">FTR</a>
+    <a href="#news">Services</a>
+    <a href="#contact">About Us</a>
+    <div class="topnav-right">
+      <a [routerLink]="['/register']" [routerLinkActive]="['activeLink']">Register</a>
+      <a [routerLink]="['/user-login']" [routerLinkActive]="['activeLink']">User</a>
+      <a [routerLink]="['/admin-login']" [routerLinkActive]="['activeLink']">Admin</a>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="grid-container">
+      <div class="aboutus">
+        <!-- <div class="subgrid1">Services</div>
+        <hr> -->
+        <div class="aboutContent">
+          <h2>Services</h2>
+          <hr>
+          <h4>FTR faciities</h4>
+          <p>Freight Transport Region application helps to manage the overall operations in Harbor.
+            Admin(Employees of FTR) and User(Vendor) can avail this application.
+          </p>
+          <h4>Admin Services</h4>
+          <p>FTR admin can manage the major details like managing terminals, loading, and grounding
+             operations handling driver mapping for each vehicle, garage allocation and deallocation, 
+             permit barrier access for the vehicle and managing sensor details etc.
+          </p>
+          <h4>Customer Services</h4>
+          <p>Customer can register with FTR and request for freight transport, includes various user
+            specific configurations and it can be viewed using Operational Dashboard.  
+          </p>
+          <h2>About us</h2>
+          <hr>
+          <p>
+            FTR is one of the major sources in International trade, transfering large volumes of commodities
+            and connecting countries across continents. Efficient management of port has a direct impact on
+            the Shipping capability of a country, Time management, Quality, and Safety.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="grid-container">
+     <div class="aboutus">
+        <div class="subgrid1">About</div>
+        <hr>
+        <div class="aboutContent">
+          About FTR
+        </div>
+      </div>
+    </div> -->
+  </div>

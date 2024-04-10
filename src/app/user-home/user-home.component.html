@@ -1,0 +1,68 @@
+<div class="topnav">
+    <a class="active" >FTR</a>
+    <div class="topnav-right">
+      <a [routerLink]="['/home']" [routerLinkActive]="['activeLink']">Logout</a>
+    </div>
+</div>
+<div>
+    <!-- <button type="button"  >Work Items</button>&nbsp; -->
+</div>
+<br><br><br><br><br>
+<div class="image"></div>
+<div>
+    <div *ngIf="userviewprofile && !updateUserProfile" class="content">
+        <div class="d-flex justify-content-center">
+            <div class="card text-center" style="border: 1px solid black; width: 50%; background-color: white;filter: opacity(0.8);">
+                <div class="card-body" style="color: black; ">
+                    <h1 class="card-title">{{userDetails.firstName}} {{userDetails.lastName}} [{{userDetails.userId}}]</h1>
+                    <p class="card-text"><b>Mob:</b> {{userDetails.mobileNumber}} | <b>Email:</b> {{userDetails.emailId}} | <b> Nationality</b>: {{userDetails.nationality}} </p>
+                    <p class="card-text"><b>Passport Number:</b> {{userDetails.passportNumber}} | <b>PIN: </b>{{userDetails.personalIdentificationNumber}}</p>
+                    <p class="card-text"><b>Permanent Address</b>: {{userDetails.permanentAddress}}</p>
+                    <p class="card-text"><b>Office Address:</b> {{userDetails.officeAddress}}</p>
+                </div>
+            </div>
+
+            <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-info" (click)="updateUserProfile = true;">&nbsp;Update User Profile</button>
+            <button class="btn btn-danger" (click)="deleteProfile()">&nbsp;Delete User Profile</button>
+        </div>
+    </div>
+
+    <div *ngIf="updateUserProfile" class="content">
+        <div class="d-flex justify-content-center">
+            <div style="border: 1px solid black; width: 50%; background-color: white;filter: opacity(0.8);">
+                <div class="container">
+                    <form [formGroup]="userUpdateForm">
+                        <h1 class="display-4">Update User Profile</h1>
+                        <div class="form-group">
+                            <label><b>Mobile Number</b></label>
+                            <input #mobileNumber type="text" class="form-control" formControlName="mobileNumber" placeholder="Enter Mobile Number" name="mobileNumber">
+                            <p *ngIf="userUpdateForm.controls.mobileNumber.errors && userUpdateForm.controls.mobileNumber.dirty" class="alert alert-danger">Mobile is a mandatory field and should be 10 digits</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label><b>Permanant Address</b></label>
+                            <input #pAddress type="text" class="form-control" formControlName="pAddress" placeholder="Enter Permanant Address" name="pAddress">
+                            <p *ngIf="userUpdateForm.controls.pAddress.errors  && userUpdateForm.controls.pAddress.dirty" class="alert alert-danger">Permanant Address is a mandatory field</p>
+                        </div>
+                        <div class="form-group">
+                            <label><b>Office Address</b></label>
+                            <input #oAddress type="text" class="form-control" formControlName="oAddress" placeholder="Enter Office Address" name="oAddress">
+                            <p *ngIf="userUpdateForm.controls.oAddress.errors  && userUpdateForm.controls.oAddress.dirty" class="alert alert-danger">Office Address is a mandatory field</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary" (click)="updateProfile(mobileNumber.value,pAddress.value, oAddress.value)" [disabled]="userUpdateForm.invalid">Update User Profile</button>
+                        <button type="button" class="btn btn-primary" (click)="backToProfile()">Back to Profile</button>
+                        <div class="error" *ngIf="submitted">
+                            <div class="alert alert-danger" *ngIf="isErrorDisplay">{{errorMessage}}</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+        </div>
+    </div>
+
+   
+</div>
